@@ -6,14 +6,20 @@
 
 1. Install global deps
 
-       npm i -g grunt-cli
-       npm i -g browserify
+ ```bash
+npm i -g grunt-cli
+npm i -g browserify
+```
 
 1. Install project deps
 
-       npm i
+ ```bash
+npm i
+```
 
 1. Compile project
 
-       grunt # runs browserify task with coffeeify transform
+ ```bash
+grunt # runs browserify task with coffeeify transform
+```
 
