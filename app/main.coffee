@@ -1,10 +1,13 @@
 Base = require 'modules/base'
-Something = require 'modules/somemodule'
+something = require 'modules/somemodule'
+moduleb = require 'module-b/module-b'
 
 console.log('this is the entry point')
 
-b = new Base()
-b.log()
+a = new Base()
+a.log()
 
-Something()
+moduleb()
+
+something()
 

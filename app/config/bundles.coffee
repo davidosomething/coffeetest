@@ -24,6 +24,14 @@ externalBundles.modules =
     'modules/somemodule'
   ]
 
+# module-b =====================================================================
+
+externalBundles['module-b'] =
+  alias: [
+    'module-b/module-b'
+  ]
+
+
 ################################################################################
 
 bundles = {}
