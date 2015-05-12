@@ -2,7 +2,8 @@
 
 > Skeleton app that uses __CoffeeScript__, __browserify__, & __Backbone.js__<br>
 > Uses __lodash__ instead of __Underscore__ via alias<br>
-> Uses __jQuery__ from window scope shimmed as a CommonJS module
+> Uses __jQuery__ and __Modernizr__ from window scope shimmed as a CommonJS
+> module
 
 ## Usage
 
