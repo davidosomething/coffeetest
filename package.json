@@ -9,7 +9,6 @@
   "author": "David O'Trakoun <me@davidosomething.com> (http://davidosomething.com/)",
   "license": "ISC",
   "devDependencies": {
-    "browserify": "^10.1.3",
     "coffeeify": "^1.1.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.8.0"
