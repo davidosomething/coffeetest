@@ -23,3 +23,7 @@ npm i
 grunt # runs browserify task with coffeeify transform
 ```
 
+## Settings
+
+Edit config in app/config/bundles.coffee
+

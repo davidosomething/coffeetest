@@ -13,6 +13,6 @@
     "coffeeify": "^1.1.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.8.0",
-    "remapify": "^2.0.1"
+    "lodash": "^3.8.0"
   }
 }
