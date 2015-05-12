@@ -35,7 +35,6 @@ module.exports = (grunt)->
             '/app/somemodule'
           ]
 
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-browserify'
 
   grunt.registerTask 'default', [
