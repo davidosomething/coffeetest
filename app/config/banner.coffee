@@ -6,8 +6,9 @@ module.exports = (bundleName, settings)->
 
   sources = _.compact _.flatten([
     settings.entry
+    _.keys settings.alias
+    settings.modules
     settings.require
-    settings.alias
   ])
 
   """

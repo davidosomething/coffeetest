@@ -1,17 +1,10 @@
 module.exports = (grunt)->
 
   _ = require 'lodash'
-  bundleConfig = require './app/config/bundles.coffee'
 
   # Project configuration
   grunt.initConfig
-    browserify: _.extend({
-      options:
-        browserifyOptions:
-          extensions: ['.coffee']
-        debug: true
-        transform: ['coffeeify']
-    }, bundleConfig)
+    browserify: require './app/config/bundles.coffee'
 
   grunt.loadNpmTasks 'grunt-browserify'
 

@@ -14,3 +14,5 @@ test = [
 _.each test, (t)->
   console.log(t)
 
+console.log('in subapp, _ is', _.VERSION)
+console.log('in subapp, Backbone is', typeof Backbone)

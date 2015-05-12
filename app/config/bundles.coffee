@@ -3,9 +3,17 @@
 _ = require 'lodash'
 banner = require './banner.coffee'
 
-config = {}
+config =
+  options:
+    browserifyOptions:
+      extensions: ['.coffee']
+    transform: ['coffeeify', 'browserify-shim']
 
 ################################################################################
+# Format:
+# require <array{string}> where string is in node_modules
+# alias thingToReplace (name of module), thingToReplaceWith (name of module)
+# modules <array{string}> where string is relative to ./app/
 
 externalBundles = {}
 
@@ -13,13 +21,17 @@ externalBundles = {}
 
 externalBundles.vendor =
   require: [
-    'lodash'
+    'backbone'
   ]
+
+  # replace all instances of underscore with lodash
+  alias:
+    'lodash': 'underscore'
 
 # modules ======================================================================
 
 externalBundles.modules =
-  alias: [
+  modules: [
     'modules/base'
     'modules/somemodule'
   ]
@@ -27,7 +39,7 @@ externalBundles.modules =
 # module-b =====================================================================
 
 externalBundles['module-b'] =
-  alias: [
+  modules: [
     'module-b/module-b'
   ]
 
@@ -61,10 +73,19 @@ _.each externalBundles, (settings, bundleName)->
       alias: {}
       require: settings.require
 
-  _.each settings.alias, (alias)->
+  # real aliases
+  _.each settings.alias, (alias, desired)->
+    bundleConfig.options.alias[alias] = desired
+
+  # local aliases
+  _.each settings.modules, (alias)->
     bundleConfig.options.alias[alias] = "./app/#{alias}"
 
-  externals = _.compact externals.concat(settings.alias, settings.require)
+  externals = _.compact externals.concat(
+    _.values(settings.alias),
+    settings.modules,
+    settings.require
+  )
   config[bundleName] = bundleConfig
 
 # entry points config ==========================================================
