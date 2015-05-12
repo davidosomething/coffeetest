@@ -1,5 +1,5 @@
-Base = require '/app/base'
-Something = require '/app/somemodule'
+Base = require 'modules/base'
+Something = require 'modules/somemodule'
 
 console.log('this is the entry point')
 

@@ -1,5 +1,5 @@
-AnotherBase = require '/app/base'
-AnotherSomething = require '/app/somemodule'
+AnotherBase = require 'modules/base'
+AnotherSomething = require 'modules/somemodule'
 
 console.log('subapp base', AnotherBase)
 
