@@ -1,3 +1,5 @@
+Backbone = require 'backbone'
+
 Base = require 'modules/base'
 something = require 'modules/somemodule'
 moduleb = require 'module-b/module-b'
@@ -10,4 +12,6 @@ a.log()
 moduleb()
 
 something()
+
+console.log('backbone in scope:', Backbone)
 

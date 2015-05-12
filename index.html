@@ -8,8 +8,17 @@
     <script src="dist/module-b.js"></script>
     <script src="dist/main.js"></script>
     <script src="dist/subapp.js"></script>
+    <style>
+      * { padding: 0; margin: 0; }
+      body { font-family: Sans-serif; line-height: 1.4; margin: 10px; }
+    </style>
   </head>
   <body>
     <h1>test</h1>
+
+    <p>globalbase should be in window scope from base.coffee in modules.js</p>
+    <p>Backbone should not be in window scope</p>
+    <p>Lodash should not be in window scope</p>
+
   </body>
 </html>
