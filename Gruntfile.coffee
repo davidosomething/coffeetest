@@ -4,7 +4,7 @@ module.exports = (grunt)->
 
   # Project configuration
   grunt.initConfig
-    browserify: require './app/config/bundles.coffee'
+    browserify: require './config/bundles.coffee'
 
   grunt.loadNpmTasks 'grunt-browserify'
 

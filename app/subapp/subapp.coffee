@@ -1,4 +1,4 @@
-_ = require 'lodash'
+_ = require 'underscore'
 AnotherBase = require 'modules/base'
 AnotherSomething = require 'modules/somemodule'
 

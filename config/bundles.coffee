@@ -1,7 +1,10 @@
 # Browserify bundle config
 
-_ = require 'lodash'
-banner = require './banner.coffee'
+_       = require 'lodash'
+util    = require 'util'
+pkgJson = require '../package.json'
+
+banner  = require './banner.coffee'
 
 config =
   options:
@@ -12,7 +15,7 @@ config =
 ################################################################################
 # Format:
 # require <array{string}> where string is in node_modules
-# alias thingToReplace (name of module), thingToReplaceWith (name of module)
+# alias <array{string}> [required:useInstead]
 # modules <array{string}> where string is relative to ./app/
 
 externalBundles = {}
@@ -25,8 +28,9 @@ externalBundles.vendor =
   ]
 
   # replace all instances of underscore with lodash
-  alias:
+  alias: {
     'lodash': 'underscore'
+  }
 
 # modules ======================================================================
 
@@ -60,18 +64,25 @@ bundles.subapp =
 
 ################################################################################
 
+# add each global shim as an external
 externals = []
+_.each pkgJson['browserify-shim'], (value, key)->
+  externals.push(key) if /^global\:/.test(value)
+
+baseBundleConfig =
+  src: []
+  options:
+    external: externals
 
 # external bundle config =======================================================
 
 _.each externalBundles, (settings, bundleName)->
-  bundleConfig =
+  bundleConfig = _.merge {}, baseBundleConfig,
     dest: "dist/#{bundleName}.js"
-    src: []
     options:
       banner: banner(bundleName, settings)
       alias: {}
-      require: settings.require
+      require: settings.require # maybe undefined
 
   # real aliases
   _.each settings.alias, (alias, desired)->
@@ -81,24 +92,28 @@ _.each externalBundles, (settings, bundleName)->
   _.each settings.modules, (alias)->
     bundleConfig.options.alias[alias] = "./app/#{alias}"
 
-  externals = _.compact externals.concat(
+  # update externals for entry point bundles to use later
+  externals = _.compact _.union(
+    externals,
     _.values(settings.alias),
     settings.modules,
     settings.require
   )
+
+  console.log bundleConfig if bundleName is 'vendor'
   config[bundleName] = bundleConfig
+
 
 # entry points config ==========================================================
 
 _.each bundles, (settings, bundleName)->
-  bundleConfig =
+  bundleConfig = _.merge {}, baseBundleConfig,
     dest: "dist/#{bundleName}.js"
-    src: []
     options:
       banner: banner(bundleName, settings)
       external: externals
 
-  bundleConfig.src.push("app/#{settings.entry}") if settings.entry
+  bundleConfig.src.push("./app/#{settings.entry}") if settings.entry
   config[bundleName] = bundleConfig
 
 ################################################################################
