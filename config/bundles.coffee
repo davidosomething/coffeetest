@@ -1,9 +1,8 @@
 # Browserify bundle config
+# Define grunt config for aliases, external bundles, and main bundles
 
 _       = require 'lodash'
-util    = require 'util'
 pkgJson = require '../package.json'
-
 banner  = require './banner.coffee'
 
 config =
@@ -15,33 +14,35 @@ config =
 ################################################################################
 # Format:
 # require <array{string}> where string is in node_modules
-# alias <array{string}> [required:useInstead]
+# alias {object} key thing to use instead of value when require(value)
 # modules <array{string}> where string is relative to ./app/
 
 externalBundles = {}
 
-# vendor =======================================================================
-
+# vendor - node_modules packages that are requirable and externally bundled
 externalBundles.vendor =
+  # require and expose backbone as an external
   require: [
     'backbone'
   ]
 
-  # replace all instances of underscore with lodash
+  # example alias - require lodash and provide lodash when any instance of
+  # require('underscore') is found. It is requirable only as 'underscore'
+  # in the app/subapps
   alias: {
     'lodash': 'underscore'
   }
 
-# modules ======================================================================
-
+# example module -- note the paths are all relative to ./app/
+# it is externally bundled so subapps can require it
+# E.g. Backbone objects and controller functions
 externalBundles.modules =
   modules: [
     'modules/base'
     'modules/somemodule'
   ]
 
-# module-b =====================================================================
-
+# example provides external for require('module-b/module-b')
 externalBundles['module-b'] =
   modules: [
     'module-b/module-b'
@@ -49,26 +50,28 @@ externalBundles['module-b'] =
 
 
 ################################################################################
+# These are the main bundles that do not export anything -- they run code and
+# require other bundles
+# E.g. the main app.js
 
 bundles = {}
 
-# main =========================================================================
-
+# main
 bundles.main =
   entry: 'main.coffee'
 
-# subapp =======================================================================
-
+# subapp
 bundles.subapp =
   entry: 'subapp/subapp.coffee'
 
 ################################################################################
 
-# add each global shim as an external
+# add each global shim as an external so it doesn't need to be bundled
 externals = []
 _.each pkgJson['browserify-shim'], (value, key)->
   externals.push(key) if /^global\:/.test(value)
 
+# object skeleton
 baseBundleConfig =
   src: []
   options:
@@ -100,9 +103,7 @@ _.each externalBundles, (settings, bundleName)->
     settings.require
   )
 
-  console.log bundleConfig if bundleName is 'vendor'
   config[bundleName] = bundleConfig
-
 
 # entry points config ==========================================================
 
