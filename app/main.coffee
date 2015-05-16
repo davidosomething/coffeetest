@@ -1,12 +1,13 @@
+Modernizr = require 'modernizr'
 _ = require 'underscore'
 $ = require 'jquery'
 Backbone = require 'backbone'
 Backbone.$ = $
-Modernizr = require 'modernizr'
 
-Base = require 'modules/base'
-something = require 'modules/somemodule'
-moduleb = require 'module-b/module-b'
+console.log($)
+Base = require './modules/base'
+something = require './modules/somemodule'
+moduleb = require './module-b/module-b'
 
 console.log('this is the entry point')
 
