@@ -2,9 +2,12 @@
 
 > Skeleton app that uses __CoffeeScript__, __browserify__, & __Backbone.js__<br>
 
-| Name | Link |
-| ---- | ---- |
-| Home: | [https://github.com/davidosomething/coffeetest](https://github.com/davidosomething/coffeetest)
+| Name           | Link |
+| -------------- | -------------- |
+| Home:          | [https://github.com/davidosomething/coffeetest](https://github.com/davidosomething/coffeetest)
+| Upstream:      | [git@github.com:davidosomething/coffeetest.git](git@github.com:coffeetest/coffeetest.git)
+| Issues:        | [https://github.com/davidosomething/coffeetest/issues](https://github.com/davidosomething/coffeetest/issues)
+| NPM            | [![David dependency status][davidBadge]][davidLink] [![Development Dependency Status][davidDevBadge]][davidDevLink] [![Peer Dependency Status][davidPeerBadge]][davidPeerLink]
 
 ## About
 
@@ -85,5 +88,14 @@ grunt bg              # starts karma server and keeps watchify processes alive
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
+
 Copyright (c) 2015 David O'Trakoun <me@davidosomething.com>
+
+
+[davidBadge]:       https://david-dm.org/davidosomething/coffeetest.png?theme=shields.io
+[davidLink]:        https://david-dm.org/davidosomething/coffeetest#info=dependencies
+[davidDevBadge]:    https://david-dm.org/davidosomething/coffeetest/dev-status.png?theme=shields.io
+[davidDevLink]:     https://david-dm.org/davidosomething/coffeetest#info=devDependencies
+[davidPeerBadge]:   https://david-dm.org/davidosomething/coffeetest/peer-status.png?theme=shields.io
+[davidPeerLink]:    https://david-dm.org/davidosomething/coffeetest#info=peerDependencies
 
