@@ -5,8 +5,11 @@ module.exports = (grunt)->
   # Project configuration
   grunt.initConfig
     browserify: require './config/bundles.coffee'
+    clean:
+      css:         'dist/*'
 
   grunt.loadNpmTasks 'grunt-browserify'
+  grunt.loadNpmTasks 'grunt-contrib-clean'
 
-  grunt.registerTask 'default', [ 'browserify' ]
+  grunt.registerTask 'default', [ 'clean', 'browserify' ]
 
