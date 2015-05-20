@@ -34,7 +34,7 @@ externalBundles.vendor =
 
 # modules ======================================================================
 
-externalBundles.modules =
+externalBundles['modules/modules'] =
   modules: [
     'modules/base'
     'modules/somemodule'
@@ -42,7 +42,7 @@ externalBundles.modules =
 
 # module-b =====================================================================
 
-externalBundles['module-b'] =
+externalBundles['module-b/module-b'] =
   modules: [
     'module-b/module-b'
   ]
