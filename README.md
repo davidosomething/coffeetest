@@ -42,6 +42,7 @@
 
  ```bash
 npm i -g grunt-cli
+npm i -g karma-cli
 npm i -g browserify
 ```
 
@@ -54,13 +55,19 @@ npm i
 1. Compile project
 
  ```bash
-grunt # runs browserify task with coffeeify transform
+grunt                 # runs browserify task with coffeeify transform
 ```
 
 1. Run tests
 
  ```bash
-grunt karma:run # single run of karma tests
+grunt karma:run       # single run of karma tests
+```
+
+1. Watch and re-test/compile on changes
+
+ ```bash
+grunt bg              # starts karma server and keeps watchify processes alive
 ```
 
 ## Configuration
