@@ -14,7 +14,9 @@ module.exports = (grunt)->
       templates:
         src: 'templates/**/*.mustache'
         dest: 'app/templates.js'
-        options: { binderName: 'nodejs' }
+        options:
+          binderName: 'nodejs'
+          exposeTemplates: true
 
     karma:
       options:
