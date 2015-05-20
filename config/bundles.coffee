@@ -25,6 +25,11 @@ externalBundles['vendor'] =
   require: [ 'backbone' ]
   alias: { 'lodash': 'underscore' } # replace "underscore" with "lodash"
 
+# templates ====================================================================
+# Run hogan before compiling these!
+externalBundles['templates'] =
+  modules: [ 'templates' ]
+
 # modules ======================================================================
 externalBundles['modules/modules'] =
   modules: [

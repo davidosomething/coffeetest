@@ -8,6 +8,8 @@ Base = require 'modules/base'
 something = require 'modules/somemodule'
 moduleb = require 'module-b/module-b'
 
+templates = require 'templates'
+
 console.log('this is the entry point')
 
 a = new Base()
@@ -33,6 +35,12 @@ class V extends Backbone.View
     return
 
 myView = new V()
-myView.render()
+
+$ ->
+  myView.render()
+  $(templates.article()).appendTo('#template-fixture')
+  $(templates.hr()).appendTo('#template-fixture')
 
 console.log('underscore is', _.VERSION)
+
+

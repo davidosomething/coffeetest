@@ -23,10 +23,13 @@
     - __jQuery__ and __Modernizr__ from the window scope are shimmed as a CommonJS
       module
     - __Backbone__ is provided and uses the shimmed libraries as modules
+  - Templating is done in __mustache__ using __Hogan.js__ as the compiler
 - Tooling
   - __Grunt__ is the build tool
     - Provides `browserify`
     - Provides `clean`
+    - Provides `hogan` to compile mustache templates into a CommonJS module
+      that exposes them as `templates.mytemplate({ data })`
     - Provides `karma:run`
     - Provides `bg` to watch all coffee and run watchify and karma on update
 - Testing
@@ -36,7 +39,7 @@
   - __Chai__ is the assertion library, with __sinon__ for spies.
     - __chai-as-promised__ available in karma
     - __chai-backbone__ NOT available in karma -- add the line
-      `chai.use(require('chai-backbone'));` in the test spec if you want it
+      `chai.use require('chai-backbone')` in the test spec if you want it
     - __chai-jquery__ available in karma
 
 ## Usage
@@ -81,9 +84,13 @@ grunt bg              # starts karma server and keeps watchify processes alive
 
 ## Changelog
 
-- 2015-05-20 -- karma integration up and running, changed bundle paths, add
-                watch config, update readme
-- 2015-05-12 -- up and running
+- 2015-05-20 --
+  - karma integration up and running, changed bundle paths, add watch config,
+    update readme
+  - add hogan
+
+- 2015-05-12
+  - up and running
 
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)

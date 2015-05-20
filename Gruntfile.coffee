@@ -10,6 +10,12 @@ module.exports = (grunt)->
     clean:
       css: 'dist/*'
 
+    hogan:
+      templates:
+        src: 'templates/**/*.mustache'
+        dest: 'app/templates.js'
+        options: { binderName: 'nodejs' }
+
     karma:
       options:
         configFile: 'config/karma.conf.coffee'
@@ -19,14 +25,18 @@ module.exports = (grunt)->
         background: true
         singlerun: false
 
-    watch: {}
+    watch:
+      templates:
+        files: 'templates/**/*.mustache'
+        tasks: ['hogan']
 
   grunt.loadNpmTasks 'grunt-browserify'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-hogan'
   grunt.loadNpmTasks 'grunt-karma'
 
-  grunt.registerTask 'build', [ 'clean', 'browserify' ]
+  grunt.registerTask 'build', [ 'clean', 'hogan', 'browserify' ]
   grunt.registerTask 'test', [ 'karma:run' ]
 
   watchifyTasks = _.map(
