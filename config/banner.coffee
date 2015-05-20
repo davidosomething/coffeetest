@@ -6,16 +6,15 @@ module.exports = (bundleName, settings)->
 
   sources = _.compact _.flatten([
     settings.entry
-    _.keys settings.alias
+    _.keys(settings.alias)
     settings.modules
     settings.require
   ])
 
   """
   /*!
-   * #{filename}
-   * Last generated <%= grunt.template.today("yyyy-mm-dd") %>
-   * Sources: #{sources}
+   * #{filename} last generated <%= grunt.template.today("yyyy-mm-dd") %>
+   * Provides: #{sources}
    */
   """
 

@@ -1,16 +1,16 @@
 # Browserify bundle config
 
 _       = require 'lodash'
-util    = require 'util'
 pkgJson = require '../package.json'
 
 banner  = require './banner.coffee'
 
-config =
+gruntConfig =
   options:
     browserifyOptions:
       extensions: ['.coffee']
     transform: ['coffeeify', 'browserify-shim']
+    watch: true # use watchify binary instead of browserify
 
 ################################################################################
 # Format:
@@ -21,19 +21,11 @@ config =
 externalBundles = {}
 
 # vendor =======================================================================
-
-externalBundles.vendor =
-  require: [
-    'backbone'
-  ]
-
-  # replace all instances of underscore with lodash
-  alias: {
-    'lodash': 'underscore'
-  }
+externalBundles['vendor'] =
+  require: [ 'backbone' ]
+  alias: { 'lodash': 'underscore' } # replace "underscore" with "lodash"
 
 # modules ======================================================================
-
 externalBundles['modules/modules'] =
   modules: [
     'modules/base'
@@ -41,12 +33,16 @@ externalBundles['modules/modules'] =
   ]
 
 # module-b =====================================================================
-
 externalBundles['module-b/module-b'] =
-  modules: [
-    'module-b/module-b'
-  ]
+  modules: [ 'module-b/module-b' ]
 
+# parent =======================================================================
+externalBundles['parent/parent'] =
+  modules: [ 'parent/parent' ]
+
+# child ========================================================================
+externalBundles['child/child'] =
+  modules: [ 'child/child' ]
 
 ################################################################################
 
@@ -64,21 +60,12 @@ bundles.subapp =
 
 ################################################################################
 
-# add each global shim as an external
-externals = []
-_.each pkgJson['browserify-shim'], (value, key)->
-  externals.push(key) if /^global\:/.test(value)
-
-baseBundleConfig =
-  src: []
-  options:
-    external: externals
-
 # external bundle config =======================================================
 
 _.each externalBundles, (settings, bundleName)->
-  bundleConfig = _.merge {}, baseBundleConfig,
-    dest: "dist/#{bundleName}.js"
+  bundleConfig =
+    src: []
+    dest: "dist/bundles/#{bundleName}.js"
     options:
       banner: banner(bundleName, settings)
       alias: {}
@@ -92,30 +79,48 @@ _.each externalBundles, (settings, bundleName)->
   _.each settings.modules, (alias)->
     bundleConfig.options.alias[alias] = "./app/#{alias}"
 
-  # update externals for entry point bundles to use later
-  externals = _.compact _.union(
-    externals,
+  bundleConfig.provides = _.compact [].concat(
     _.values(settings.alias),
     settings.modules,
     settings.require
   )
-
-  console.log bundleConfig if bundleName is 'vendor'
-  config[bundleName] = bundleConfig
-
+  gruntConfig[bundleName] = bundleConfig
 
 # entry points config ==========================================================
 
 _.each bundles, (settings, bundleName)->
-  bundleConfig = _.merge {}, baseBundleConfig,
-    dest: "dist/#{bundleName}.js"
+  bundleConfig =
+    src: ["./app/#{settings.entry}"]
+    dest: "dist/entry/#{bundleName}.js"
     options:
       banner: banner(bundleName, settings)
-      external: externals
-
-  bundleConfig.src.push("./app/#{settings.entry}") if settings.entry
-  config[bundleName] = bundleConfig
+  gruntConfig[bundleName] = bundleConfig
 
 ################################################################################
 
-module.exports = config
+# Map externals
+
+# add each global shim as an external
+globalExternals = []
+_.each pkgJson['browserify-shim'], (value, key)->
+  globalExternals.push(key) if /^global\:/.test(value)
+
+# combine all the bundleConfig.provides into one big array
+moduleExternals = _.compact _.flatten _.pluck(gruntConfig, 'provides')
+allExternals = [].concat(globalExternals, moduleExternals)
+
+# add externals to each bundleConfig
+gruntConfig = _.transform gruntConfig, (result, config, bundleName)->
+  if bundleName isnt 'options'
+    config.options.external = _.difference allExternals, config.provides
+  result[bundleName] = config
+  return
+
+################################################################################
+
+module.exports =
+  gruntConfig: gruntConfig
+  globalExternals: globalExternals
+  moduleExternals: moduleExternals
+  allExternals: allExternals
+

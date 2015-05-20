@@ -2,7 +2,7 @@ Parent = require('parent/parent')
 
 module.exports = class Child extends Parent
 
-  @_age = 20
+  @_age = 10
 
   constructor: ->
     super

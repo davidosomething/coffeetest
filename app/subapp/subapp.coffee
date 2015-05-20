@@ -8,7 +8,7 @@ test = [
   'this'
   'is'
   'a'
-  'test'
+  'test!'
 ]
 
 _.each test, (t)->

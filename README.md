@@ -1,9 +1,40 @@
 # coffeescript + browserify skeleton
 
 > Skeleton app that uses __CoffeeScript__, __browserify__, & __Backbone.js__<br>
-> Uses __lodash__ instead of __Underscore__ via alias<br>
-> Uses __jQuery__ and __Modernizr__ from window scope shimmed as a CommonJS
-> module
+
+| Name | Link |
+| ---- | ---- |
+| Home: | [https://github.com/davidosomething/coffeetest](https://github.com/davidosomething/coffeetest)
+
+## About
+
+- Frontend app development
+  - __CoffeeScript__ is the scripting language of choice
+  - Module bundling
+    - __CommonJS__ is the module definition of choice
+    - __Browserify__ is the module bundler, transforming through __coffeeify__
+      - All modules are aliased relative to `app/` -- so instead of
+        `../../modulefolder/mymodule` you can just do `modulefolder/mymodule`.
+  - Libraries and frameworks
+    - __lodash__ is provided in place of __Underscore__ via a browserify alias
+    - __jQuery__ and __Modernizr__ from the window scope are shimmed as a CommonJS
+      module
+    - __Backbone__ is provided and uses the shimmed libraries as modules
+- Tooling
+  - __Grunt__ is the build tool
+    - Provides `browserify`
+    - Provides `clean`
+    - Provides `karma:run`
+    - Provides `bg` to watch all coffee and run watchify and karma on update
+- Testing
+  - __Karma__ is the test runner with code coverage support through
+    __browserify-istanbul__. Run it using `grunt karma:run`.
+  - __Mocha__ is the test framework
+  - __Chai__ is the assertion library, with __sinon__ for spies.
+    - __chai-as-promised__ available in karma
+    - __chai-backbone__ NOT available in karma -- add the line
+      `chai.use(require('chai-backbone'));` in the test spec if you want it
+    - __chai-jquery__ available in karma
 
 ## Usage
 
@@ -26,7 +57,13 @@ npm i
 grunt # runs browserify task with coffeeify transform
 ```
 
-## Settings
+1. Run tests
+
+ ```bash
+grunt karma:run # single run of karma tests
+```
+
+## Configuration
 
 - Edit config in `app/config/bundles.coffee`
 - Edit `browserify-shims` in `package.json` to shim things (i.e., make a
@@ -34,5 +71,10 @@ grunt # runs browserify task with coffeeify transform
 
 ## Changelog
 
-- 2015-05-12 - up and running
+- 2015-05-20 -- karma integration up and running, changed bundle paths, add
+                watch config, update readme
+- 2015-05-12 -- up and running
+
+
+Copyright (c) 2015 David O'Trakoun <me@davidosomething.com>
 
