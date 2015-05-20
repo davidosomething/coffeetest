@@ -83,5 +83,7 @@ grunt bg              # starts karma server and keeps watchify processes alive
 - 2015-05-12 -- up and running
 
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 Copyright (c) 2015 David O'Trakoun <me@davidosomething.com>
 
