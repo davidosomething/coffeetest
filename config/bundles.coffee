@@ -8,8 +8,8 @@ banner  = require './banner.coffee'
 gruntConfig =
   options:
     browserifyOptions:
-      extensions: ['.cjsx', '.coffee']
-    transform: ['coffee-reactify', 'browserify-shim']
+      extensions: [ '.cjsx', '.coffee', '.js', '.jsx' ]
+    transform: [ 'coffee-reactify', 'browserify-shim' ]
     watch: true # use watchify binary instead of browserify
 
 ################################################################################

@@ -28,6 +28,9 @@
     - __Backbone__ is provided and uses the shimmed libraries as modules
     _ __react__ is provided via npm module
   - Templating is done in __mustache__ using __Hogan.js__ as the compiler
+  - Minification of compiled js files is done as a standalone step using
+    __UglifyJS__. The minified files are given a `.min.js` extension and
+    sourcemapped to their unminified versions.
 - Tooling
   - __Grunt__ is the build tool
     - Provides `browserify`

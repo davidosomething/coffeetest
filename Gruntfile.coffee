@@ -32,9 +32,27 @@ module.exports = (grunt)->
         files: 'templates/**/*.mustache'
         tasks: ['hogan']
 
+    uglify:
+      all:
+        options:
+          preserveComments: 'some'
+          report: 'min'
+          screwIE8: true
+          sourceMap: true
+        files: [
+          {
+            expand: true,
+            cwd: 'dist',
+            src: '**/*.js',
+            dest: 'dist'
+            ext: '.min.js'
+          }
+        ]
+
   grunt.loadNpmTasks 'grunt-browserify'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-hogan'
   grunt.loadNpmTasks 'grunt-karma'
 

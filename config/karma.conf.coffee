@@ -34,9 +34,8 @@ module.exports = (config)->
       'test/**/*.coffee': [ 'browserify' ]
 
     browserify:
-      debug: true # sourcemapping, thx
-      transform: [ 'coffeeify', 'browserify-shim', 'browserify-istanbul' ]
-      extensions: [ '.coffee', '.js', '.jsx' ]
+      extensions: [ '.cjsx', '.coffee', '.js', '.jsx' ]
+      transform: [ 'coffee-reactify', 'browserify-shim', 'browserify-istanbul' ]
       configure: (b)->
         # Specify external bundles
         b.on 'prebundle', ->
