@@ -1,6 +1,7 @@
 # coffeescript + browserify skeleton
 
-> Skeleton app that uses __CoffeeScript__, __browserify__, & __Backbone.js__<br>
+> Skeleton app that uses __CoffeeScript__, __browserify__, __Backbone.js__,
+> & __react.js__
 
 | Name           | Link |
 | -------------- | -------------- |
@@ -18,11 +19,14 @@
     - __Browserify__ is the module bundler, transforming through __coffeeify__
       - All modules are aliased relative to `app/` -- so instead of
         `../../modulefolder/mymodule` you can just do `modulefolder/mymodule`.
+      - __coffee-reactify__ is the browserify transform that handles
+        coffeescript AND cjsx so full React support is available.
   - Libraries and frameworks
     - __lodash__ is provided in place of __Underscore__ via a browserify alias
     - __jQuery__ and __Modernizr__ from the window scope are shimmed as a CommonJS
       module
     - __Backbone__ is provided and uses the shimmed libraries as modules
+    _ __react__ is provided via npm module
   - Templating is done in __mustache__ using __Hogan.js__ as the compiler
 - Tooling
   - __Grunt__ is the build tool

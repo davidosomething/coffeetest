@@ -8,8 +8,8 @@ banner  = require './banner.coffee'
 gruntConfig =
   options:
     browserifyOptions:
-      extensions: ['.coffee']
-    transform: ['coffeeify', 'browserify-shim']
+      extensions: ['.cjsx', '.coffee']
+    transform: ['coffee-reactify', 'browserify-shim']
     watch: true # use watchify binary instead of browserify
 
 ################################################################################
@@ -22,7 +22,7 @@ externalBundles = {}
 
 # vendor =======================================================================
 externalBundles['vendor'] =
-  require: [ 'backbone' ]
+  require: [ 'backbone', 'react' ]
   alias: { 'lodash': 'underscore' } # replace "underscore" with "lodash"
 
 # templates ====================================================================
@@ -35,6 +35,7 @@ externalBundles['modules/modules'] =
   modules: [
     'modules/base'
     'modules/somemodule'
+    'modules/ReactView'
   ]
 
 # module-b =====================================================================
