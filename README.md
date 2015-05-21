@@ -16,7 +16,8 @@
   - __CoffeeScript__ is the scripting language of choice
   - Module bundling
     - __CommonJS__ is the module definition of choice
-    - __Browserify__ is the module bundler, transforming through __coffeeify__
+    - __Browserify__ is the module bundler, transforming through
+      __coffee-reactify__
       - All modules are aliased relative to `app/` -- so instead of
         `../../modulefolder/mymodule` you can just do `modulefolder/mymodule`.
       - __coffee-reactify__ is the browserify transform that handles
@@ -54,9 +55,7 @@
 1. Install global deps
 
  ```bash
-npm i -g grunt-cli
-npm i -g karma-cli
-npm i -g browserify
+npm i -g grunt-cli karma-cli
 ```
 
 1. Install project deps
@@ -68,7 +67,7 @@ npm i
 1. Compile project
 
  ```bash
-grunt                 # runs browserify task with coffeeify transform
+grunt                 # runs clean, hogan, browserify, uglify
 ```
 
 1. Run tests
@@ -91,7 +90,13 @@ grunt bg              # starts karma server and keeps watchify processes alive
 
 ## Changelog
 
-- 2015-05-20 --
+- 2015-05-21
+  - introduce build folder
+  - react.js support via CJSX and coffee-reactify, including demo of react
+    component rendering
+  - uglification with sourcemaps
+
+- 2015-05-20
   - karma integration up and running, changed bundle paths, add watch config,
     update readme
   - add hogan
