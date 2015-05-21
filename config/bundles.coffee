@@ -71,7 +71,7 @@ bundles.subapp =
 _.each externalBundles, (settings, bundleName)->
   bundleConfig =
     src: []
-    dest: "dist/bundles/#{bundleName}.js"
+    dest: "build/bundles/#{bundleName}.js"
     options:
       banner: banner(bundleName, settings)
       alias: {}
@@ -97,7 +97,7 @@ _.each externalBundles, (settings, bundleName)->
 _.each bundles, (settings, bundleName)->
   bundleConfig =
     src: ["./app/#{settings.entry}"]
-    dest: "dist/entry/#{bundleName}.js"
+    dest: "build/entry/#{bundleName}.js"
     options:
       banner: banner(bundleName, settings)
   gruntConfig[bundleName] = bundleConfig

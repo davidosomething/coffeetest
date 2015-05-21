@@ -8,7 +8,7 @@ module.exports = (grunt)->
     browserify: bundles.gruntConfig
 
     clean:
-      css: 'dist/*'
+      all: [ 'dist/*', 'build/*' ]
 
     hogan:
       templates:
@@ -30,7 +30,10 @@ module.exports = (grunt)->
     watch:
       templates:
         files: 'templates/**/*.mustache'
-        tasks: ['hogan']
+        tasks: [ 'hogan' ]
+      bundles:
+        files: 'build/**/*.js'
+        tasks: [  'uglify' ]
 
     uglify:
       all:
@@ -39,15 +42,13 @@ module.exports = (grunt)->
           report: 'min'
           screwIE8: true
           sourceMap: true
-        files: [
-          {
-            expand: true,
-            cwd: 'dist',
-            src: '**/*.js',
-            dest: 'dist'
-            ext: '.min.js'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: 'build',
+          src: '**/*.js',
+          dest: 'dist'
+          ext: '.min.js'
+        }]
 
   grunt.loadNpmTasks 'grunt-browserify'
   grunt.loadNpmTasks 'grunt-contrib-clean'
@@ -56,7 +57,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-hogan'
   grunt.loadNpmTasks 'grunt-karma'
 
-  grunt.registerTask 'build', [ 'clean', 'hogan', 'browserify' ]
+  grunt.registerTask 'build', [ 'clean', 'hogan', 'browserify', 'uglify' ]
   grunt.registerTask 'test', [ 'karma:run' ]
 
   watchifyTasks = _.map(

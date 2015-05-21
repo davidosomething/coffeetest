@@ -24,7 +24,11 @@ module.exports = (config)->
     files: [
       'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
       'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'
-      'dist/bundles/**/*.js'
+
+      # things to test
+      'build/bundles/**/*.js'
+
+      # test specs
       'test/**/*.coffee'
     ]
 
