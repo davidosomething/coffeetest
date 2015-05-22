@@ -8,7 +8,9 @@ module.exports = (grunt)->
     browserify: bundles.gruntConfig
 
     clean:
-      all: [ 'dist/*', 'build/*' ]
+      build:    [ 'build/*' ]
+      dist:     [ 'dist/*' ]
+      reports:  [ 'reports/*' ]
 
     hogan:
       templates:
