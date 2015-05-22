@@ -18,6 +18,9 @@ module.exports = (config)->
       'browserify'
     ]
 
+    client:
+      args: ['--require', 'mocha-clean']
+
     # out of the config/ dir
     basePath: '../'
 
