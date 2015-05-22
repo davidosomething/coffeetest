@@ -1,5 +1,6 @@
 module.exports = (grunt)->
 
+  require 'mocha-clean'
   _ = require 'lodash'
   bundles = require './config/bundles.coffee'
 
