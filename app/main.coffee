@@ -7,6 +7,7 @@ Modernizr = require 'modernizr'
 Base = require 'modules/base'
 something = require 'modules/somemodule'
 moduleb = require 'module-b/module-b'
+PragmaView = require 'modules/PragmaView'
 ReactView = require 'modules/ReactView'
 
 templates = require 'templates'

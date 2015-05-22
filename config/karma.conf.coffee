@@ -38,14 +38,17 @@ module.exports = (config)->
       'test/**/*.coffee': [ 'browserify' ]
 
     browserify:
+      debug: true
       extensions: [ '.cjsx', '.coffee', '.js', '.jsx' ]
-      transform: [ 'coffee-reactify', 'browserify-shim', 'browserify-istanbul' ]
+      transform: [
+        'coffee-reactify'
+        'browserify-shim'
+        'browserify-istanbul' # used instead of coverage preprocessor
+      ]
       configure: (b)->
         # Specify external bundles
         b.on 'prebundle', ->
           _.each bundleConfig.allExternals, (e)-> b.external(e)
-
-    reporters: [ 'mocha-clean', 'DHTML', 'coverage' ]
 
     dhtmlReporter:
       outputFile: '/reports/karma/report.html'
@@ -57,6 +60,9 @@ module.exports = (config)->
       reporters: [
         { type: 'cobertura', subdir: 'cobertura' }
         { type: 'lcovonly', subdir: 'lcov' }
-      ]
 
+        # not working
+        # @see https://github.com/karma-runner/karma-coverage/pull/140
+        #{ type: 'html', subdir: 'html' }
+      ]
 

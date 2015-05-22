@@ -23,6 +23,10 @@ module.exports = (grunt)->
         configFile: 'config/karma.conf.coffee'
       run:
         singleRun: true
+        reporters: [ 'mocha-clean' ]
+      ci:
+        singleRun: true
+        reporters: [ 'DHTML', 'coverage' ]
       watch:
         background: true
         singlerun: false

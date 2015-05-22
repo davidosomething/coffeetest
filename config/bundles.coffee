@@ -9,7 +9,10 @@ gruntConfig =
   options:
     browserifyOptions:
       extensions: [ '.cjsx', '.coffee', '.js', '.jsx' ]
-    transform: [ 'coffee-reactify', 'browserify-shim' ]
+    transform: [
+      'coffee-reactify'
+      'browserify-shim'
+    ]
     watch: true # use watchify binary instead of browserify
 
 ################################################################################
@@ -35,6 +38,7 @@ externalBundles['modules/modules'] =
   modules: [
     'modules/base'
     'modules/somemodule'
+    'modules/PragmaView'
     'modules/ReactView'
   ]
 
