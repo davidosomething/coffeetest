@@ -45,7 +45,7 @@ module.exports = (config)->
         b.on 'prebundle', ->
           _.each bundleConfig.allExternals, (e)-> b.external(e)
 
-    reporters: [ 'spec', 'DHTML', 'coverage' ]
+    reporters: [ 'mocha-clean', 'DHTML', 'coverage' ]
 
     dhtmlReporter:
       outputFile: '/reports/karma/report.html'
