@@ -49,6 +49,14 @@
     - __chai-backbone__ NOT available in karma -- add the line
       `chai.use require('chai-backbone')` in the test spec if you want it
     - __chai-jquery__ available in karma
+  - Reporting
+    - __browserify-istanbul__ transforms the code using __istanbul__, which
+      delegates to __ibrik__ for CoffeeScript.
+    - Note: HTML report generation is currently broken in istanbul, but you can
+      manually generate one from the LCOV file using the cli tool `genhtml`
+      which should come with `lcov` (install that via your OS package manager)
+      Ideally you should be sending reports to an aggregation service like
+      [coveralls](https://coveralls.io/) anyway.
 
 ## Usage
 
