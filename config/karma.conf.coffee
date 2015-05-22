@@ -1,5 +1,6 @@
 module.exports = (config)->
 
+  require 'mocha-clean'
   _ = require 'lodash'
   bundleConfig = require './bundles.coffee'
 
