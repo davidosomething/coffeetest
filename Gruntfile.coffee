@@ -10,7 +10,12 @@ module.exports = (grunt)->
     clean:
       build:    [ 'build/*' ]
       dist:     [ 'dist/*' ]
-      reports:  [ 'reports/*' ]
+      reports:  [
+        'reports/coverage/*'
+        '!reports/coverage/.gitkeep'
+        'reports/karma/*'
+        '!reports/karma/.gitkeep'
+      ]
 
     hogan:
       templates:
