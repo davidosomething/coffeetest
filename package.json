@@ -37,7 +37,6 @@
     "karma-chai-as-promised": "^0.1.2",
     "karma-chai-sinon": "^0.1.4",
     "karma-coverage": "^0.3.1",
-    "karma-dhtml-reporter": "^0.2.5",
     "karma-jquery-chai": "^0.1.2",
     "karma-mocha": "^0.1.10",
     "karma-mocha-clean-reporter": "^0.0.1",

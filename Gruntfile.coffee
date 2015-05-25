@@ -13,8 +13,6 @@ module.exports = (grunt)->
       reports:  [
         'reports/coverage/*'
         '!reports/coverage/.gitkeep'
-        'reports/karma/*'
-        '!reports/karma/.gitkeep'
       ]
 
     hogan:
@@ -33,7 +31,7 @@ module.exports = (grunt)->
         reporters: [ 'mocha-clean' ]
       ci:
         singleRun: true
-        reporters: [ 'DHTML', 'coverage' ]
+        reporters: [ 'coverage' ]
       watch:
         background: true
         singlerun: false

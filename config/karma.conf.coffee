@@ -50,11 +50,6 @@ module.exports = (config)->
         b.on 'prebundle', ->
           _.each bundleConfig.allExternals, (e)-> b.external(e)
 
-    dhtmlReporter:
-      outputFile: '/reports/karma/report.html'
-      exclusiveSections: true
-      openReportInBrowser: false
-
     coverageReporter:
       dir: 'reports/coverage/'
       reporters: [
