@@ -4,6 +4,7 @@ module.exports = (config)->
   bundleConfig = require './bundles.coffee'
 
   config.set
+    logLevel: config.LOG_WARN
 
     browsers:  [ 'PhantomJS' ]
 
@@ -60,4 +61,7 @@ module.exports = (config)->
         # @see https://github.com/karma-runner/karma-coverage/pull/140
         #{ type: 'html', subdir: 'html' }
       ]
+
+    mochaReporter:
+      output: 'noFailures'
 
