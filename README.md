@@ -98,6 +98,9 @@ grunt bg              # starts karma server and keeps watchify processes alive
 
 ## Changelog
 
+- 2015-05-25
+  - karma output and logging cleanup
+
 - 2015-05-21
   - introduce build folder
   - react.js support via CJSX and coffee-reactify, including demo of react
