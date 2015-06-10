@@ -31,7 +31,7 @@ module.exports = (grunt)->
         reporters: [ 'mocha-clean' ]
       ci:
         singleRun: true
-        reporters: [ 'coverage' ]
+        reporters: [ 'coverage' ] # see karma conf for issues with coverage
       watch:
         background: true
         singlerun: false

@@ -29,18 +29,18 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-hogan": "^0.3.0",
-    "grunt-karma": "^0.10.1",
+    "grunt-karma": "^0.11.0",
     "hogan.js": "^3.0.2",
     "jquery": "^2.1.4",
     "karma-browserify": "^4.1.2",
     "karma-chai": "^0.1.0",
     "karma-chai-as-promised": "^0.1.2",
     "karma-chai-sinon": "^0.1.4",
-    "karma-coverage": "^0.3.1",
+    "karma-coverage": "^0.4.1",
     "karma-jquery-chai": "^0.1.2",
     "karma-mocha": "^0.1.10",
     "karma-mocha-clean-reporter": "^0.0.1",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^0.2.0"
   },
   "dependencies": {
     "backbone": "^1.1.2",

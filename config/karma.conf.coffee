@@ -34,7 +34,7 @@ module.exports = (config)->
     ]
 
     # Don't apply karma-coverage preprocessor since all it does it istanbulify
-    # coffee files. Browserify-istanbul will do that
+    # coffee files. Browserify-istanbul will do that after CJSX transpilation
     preprocessors:
       'test/**/*.coffee': [ 'browserify' ]
 
@@ -51,15 +51,15 @@ module.exports = (config)->
         b.on 'prebundle', ->
           _.each bundleConfig.allExternals, (e)-> b.external(e)
 
+    # @see https://github.com/karma-runner/karma-coverage/issues/16
     coverageReporter:
       dir: 'reports/coverage/'
       reporters: [
+        # html reporter still not working
+        # @see https://github.com/karma-runner/karma-coverage/issues/157
+        #{ type: 'html', subdir: 'html' }
         { type: 'cobertura', subdir: 'cobertura' }
         { type: 'lcovonly', subdir: 'lcov' }
-
-        # not working
-        # @see https://github.com/karma-runner/karma-coverage/pull/140
-        #{ type: 'html', subdir: 'html' }
       ]
 
     mochaReporter:
